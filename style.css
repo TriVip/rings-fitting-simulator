@@ -1,0 +1,213 @@
+body {
+    font-family: sans-serif;
+    background-color: #f6f7fb;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 720px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding-bottom: 10px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.header {
+    background-color: #6d41e7;
+    padding: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    text-align: center;
+    color: white;
+}
+
+.camera-container {
+    position: relative;
+    text-align: center;
+    padding: 15px;
+    background-color: #eaeaf3;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.controls button {
+    border: none;
+    background-color: #4ecb71;
+    color: white;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.category-selector {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.category-selector button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.category-selector .active {
+    background-color: #6d41e7;
+    color: white;
+}
+
+.product-list {
+    padding: 0 10px;
+}
+
+.product-items {
+    display: flex;
+    overflow-x: auto;
+}
+
+.product-item {
+    width: 120px;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.product-item.active {
+    border-color: #6d41e7;
+}
+
+.product-preview {
+    width: 100%;
+    height: 50px;
+    border-radius: 6px;
+}
+
+.gold { background-color: #ffc800; }
+.silver { background-color: #cfd1d0; }
+.gold-rose { background-color: #ffdb7e; }
+
+.product-info {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.add-to-cart-btn {
+    width: calc(100% - 20px);
+    background-color: #6d41e7;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.product-item img {
+    width: 100%;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Reset chung cho button */
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Button bật camera & refresh */
+.controls button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    margin: 0 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.controls button:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(76,175,80,0.4);
+}
+
+/* Button chọn danh mục sản phẩm */
+.category-selector {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.category-selector button {
+    padding: 8px 16px;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+    color: #555;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.category-selector button.active,
+.category-selector button:hover {
+    background-color: #6c63ff;
+    color: white;
+    box-shadow: 0 4px 12px rgba(108,99,255,0.3);
+    transform: translateY(-2px);
+}
+
+/* Button Thêm vào giỏ hàng */
+.add-to-cart-btn {
+    background-color: #6c63ff;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 10px;
+    width: calc(100% - 40px);
+    display: block;
+    margin: 20px auto;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(108,99,255,0.2);
+}
+
+.add-to-cart-btn:hover {
+    background-color: #574fd6;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(108,99,255,0.3);
+}
+
+/* Card sản phẩm */
+.product-item {
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.product-item.active,
+.product-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.category-selector button.active {
+    background-color: #6c63ff !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(108,99,255,0.4);
+}
+
+#canvas, #webcam {
+    transform: scaleX(-1);
+}
