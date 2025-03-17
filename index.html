@@ -160,7 +160,11 @@
                             // Dùng đốt gần (finger[1]) và đốt giữa (finger[2]) để fit nhẫn chính xác nhất
                             const base = finger[1]; // Đốt gần bàn tay hơn
                             const middle = finger[2]; // Đốt ở giữa ngón tay
-
+                            if (isMobile()) {
+                                drawRotatedRingMobile(base, tip);  // Dành riêng cho điện thoại
+                            } else {
+                                drawRotatedRing(base, tip);        // Bản desktop giữ nguyên
+                            }
                             drawRotatedRing(base, middle);
                         }
                     }
@@ -199,6 +203,9 @@
                 //     );
                 //     ctx.restore();
                 // }
+                function isMobile() {
+                return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent);
+            }
                 function drawRotatedRing(base, tip) {
                 const videoWidth = video.videoWidth;
                 const videoHeight = video.videoHeight;
@@ -246,6 +253,53 @@
                 ctx.restore();
             }
             });
+
+            function drawRotatedRingMobile(base, tip) {
+                    const videoWidth = video.videoWidth;
+                    const videoHeight = video.videoHeight;
+                    const canvasWidth = canvas.width;
+                    const canvasHeight = canvas.height;
+
+                    // Tính toán scale dựa trên kích thước video và canvas
+                    const scaleX = canvasWidth / videoWidth;
+                    const scaleY = canvasHeight / videoHeight;
+
+                    // Scale lại các điểm base, tip phù hợp với canvas
+                    const scaledBase = [base[0] * scaleX, base[1] * scaleY];
+                    const scaledTip = [tip[0] * scaleX, tip[1] * scaleY];
+
+                    const dx = scaledTip[0] - scaledBase[0];
+                    const dy = scaledTip[1] - scaledBase[1];
+                    const angle = Math.atan2(dy, dx);
+                    const distance = Math.hypot(dx, dy);
+
+                    // Đã test tối ưu cho màn hình điện thoại
+                    const ringWidth = distance * 2.8; // nhỏ hơn chút cho mobile
+                    const ringHeight = distance * 2.0;
+
+                    const offsetY = distance * 0.1;
+
+                    const centerX = (scaledBase[0] + scaledTip[0]) / 2;
+                    const centerY = (scaledBase[1] + scaledTip[1]) / 2;
+
+                    ctx.save();
+                    ctx.translate(centerX, centerY);
+                    ctx.rotate(angle + Math.PI / 2);
+
+                    ctx.shadowColor = 'rgba(0,0,0,0.3)';
+                    ctx.shadowBlur = 8;
+                    ctx.shadowOffsetX = 2;
+                    ctx.shadowOffsetY = 2;
+
+                    ctx.drawImage(
+                        ringImg,
+                        -ringWidth / 2,
+                        -ringHeight / 2 + offsetY,
+                        ringWidth,
+                        ringHeight
+                    );
+                    ctx.restore();
+                }
 
             function loadProducts(category) {
                 const productItems = document.querySelector('.product-items');
