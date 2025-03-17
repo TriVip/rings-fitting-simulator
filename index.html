@@ -160,6 +160,7 @@
                             // Dùng đốt gần (finger[1]) và đốt giữa (finger[2]) để fit nhẫn chính xác nhất
                             const base = finger[1]; // Đốt gần bàn tay hơn
                             const middle = finger[2]; // Đốt ở giữa ngón tay
+
                             if (isMobile()) {
                                 drawRotatedRingMobile(base, tip);  // Dành riêng cho điện thoại
                             } else {
@@ -226,10 +227,10 @@
                 const distance = Math.hypot(dx, dy);
 
                 // Điều chỉnh kích thước nhẫn theo scale
-                const ringWidth = distance * 1.4;
-                const ringHeight = distance * 1.1;
+                const ringWidth = distance * 1.6;
+                const ringHeight = distance * 2.0;
 
-                const offsetY = distance * 0.05;
+                const offsetY = distance * 0.55;
 
                 const centerX = (scaledBase[0] + scaledTip[0]) / 2;
                 const centerY = (scaledBase[1] + scaledTip[1]) / 2;
