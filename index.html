@@ -205,7 +205,7 @@
                 //     ctx.restore();
                 // }
                 function isMobile() {
-                return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent);
+                    return window.innerWidth <= 768;
             }
                 function drawRotatedRing(base, middle) {
                 const videoWidth = video.videoWidth;
@@ -219,7 +219,7 @@
 
                 // Áp dụng scale vào tọa độ base và tip
                 const scaledBase = [base[0] * scaleX, base[1] * scaleY];
-                const scaledTip = [tip[0] * scaleX, tip[1] * scaleY];
+                const scaledTip = [middle[0] * scaleX, middle[1] * scaleY];
 
                 const dx = scaledTip[0] - scaledBase[0];
                 const dy = scaledTip[1] - scaledBase[1];
@@ -267,7 +267,7 @@
 
                     // Scale lại các điểm base, tip phù hợp với canvas
                     const scaledBase = [base[0] * scaleX, base[1] * scaleY];
-                    const scaledTip = [tip[0] * scaleX, tip[1] * scaleY];
+                    const scaledTip = [middle[0] * scaleX, middle[1] * scaleY];
 
                     const dx = scaledTip[0] - scaledBase[0];
                     const dy = scaledTip[1] - scaledBase[1];
