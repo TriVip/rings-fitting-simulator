@@ -162,9 +162,9 @@
                             const middle = finger[2]; // Đốt ở giữa ngón tay
 
                             if (isMobile()) {
-                                drawRotatedRingMobile(base, tip);  // Dành riêng cho điện thoại
+                                drawRotatedRingMobile(base, middle);  // Dành riêng cho điện thoại
                             } else {
-                                drawRotatedRing(base, tip);        // Bản desktop giữ nguyên
+                                drawRotatedRing(base, middle);        // Bản desktop giữ nguyên
                             }
                             drawRotatedRing(base, middle);
                         }
@@ -207,7 +207,7 @@
                 function isMobile() {
                 return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent);
             }
-                function drawRotatedRing(base, tip) {
+                function drawRotatedRing(base, middle) {
                 const videoWidth = video.videoWidth;
                 const videoHeight = video.videoHeight;
                 const canvasWidth = canvas.width;
@@ -255,7 +255,7 @@
             }
             });
 
-            function drawRotatedRingMobile(base, tip) {
+            function drawRotatedRingMobile(base, middle) {
                     const videoWidth = video.videoWidth;
                     const videoHeight = video.videoHeight;
                     const canvasWidth = canvas.width;
