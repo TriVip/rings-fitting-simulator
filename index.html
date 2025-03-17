@@ -74,9 +74,7 @@
                 const ctx = canvas.getContext('2d');
                 const toggleCamBtn = document.getElementById('toggleCam');
 
-                let model = null;
-                let webcamStream = null;
-                let isCamOn = false;
+                let model, webcamStream, isCamOn = false;
 
                 const ringImg = new Image();
                 ringImg.src = "https://cdn.pnj.io/nhan/ring-fitting-simulator/rings/ring1.png";
@@ -205,7 +203,7 @@
                 //     ctx.restore();
                 // }
                 function isMobile() {
-                    return window.innerWidth <= 768;
+                return window.innerWidth <= 768;
             }
                 function drawRotatedRing(base, middle) {
                 const videoWidth = video.videoWidth;
@@ -253,8 +251,6 @@
                 );
                 ctx.restore();
             }
-            });
-
             function drawRotatedRingMobile(base, middle) {
                     const videoWidth = video.videoWidth;
                     const videoHeight = video.videoHeight;
@@ -301,6 +297,7 @@
                     );
                     ctx.restore();
                 }
+            });
 
             function loadProducts(category) {
                 const productItems = document.querySelector('.product-items');
