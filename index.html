@@ -84,6 +84,25 @@
                 const categoryButtons = document.querySelectorAll('.category-selector button');
                 const productTitle = document.querySelector('.product-list h4');
 
+                const products = {
+                rings: [
+                    { name: "Nhẫn Kim Cương", price: "12.500.000 VND", img: "./rings/ring1.png" },
+                    { name: "Nhẫn Bạc Đơn Giản", price: "1.200.000 VND", img: "./rings/ring2.png" },
+                    { name: "Nhẫn Vàng Hồng", price: "8.900.000 VND", img: "./rings/ring3.png" },
+                    { name: "Nhẫn Vàng 18K", price: "15.900.000 VND", img: "./rings/ring4.png" },
+                    { name: "Nhẫn Cưới Cao Cấp", price: "22.000.000 VND", img: "./rings/ring5.png" }
+                ],
+                necklaces: [
+                    { name: "Vòng cổ Bạc", price: "2.500.000 VND", img: "./necklaces/necklace1.png" },
+                    { name: "Vòng cổ Kim Cương", price: "15.500.000 VND", img: "./necklaces/necklace2.png" },
+                    { name: "Vòng cổ Vàng", price: "9.500.000 VND", img: "./necklaces/necklace3.png" },
+                    { name: "Vòng cổ Ruby", price: "17.000.000 VND", img: "./necklaces/necklace4.png" },
+                    { name: "Vòng cổ Ngọc trai", price: "7.500.000 VND", img: "./necklaces/necklace5.png" }
+                ]
+            };
+
+            let currentProducts = products.rings; 
+
                 categoryButtons.forEach(button => {
                     button.addEventListener('click', () => {
                         // Xóa active khỏi tất cả button
@@ -100,6 +119,12 @@
                     });
                 });
 
+                async function initModel() {
+                if (!model) {
+                    model = await handpose.load();
+                }
+            }
+            initModel();
                 toggleCamBtn.onclick = async () => {
                     if (!isCamOn) {
                         webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -108,9 +133,9 @@
                         toggleCamBtn.textContent = 'Tắt Camera';
                         isCamOn = true;
 
-                        if (!model) {
-                            model = await handpose.load();
-                        }
+                        // if (!model) {
+                        //     model = await handpose.load();
+                        // }
                         renderLoop();
                     } else {
                         webcamStream.getTracks().forEach(track => track.stop());
@@ -119,7 +144,9 @@
                         ctx.clearRect(0, 0, canvas.width, canvas.height);
                     }
                 };
-
+                if (webcamStream) {
+                webcamStream.getTracks().forEach(track => track.stop());
+                };
                 async function renderLoop() {
                     if (isCamOn && model && video.readyState === video.HAVE_ENOUGH_DATA) {
                         ctx.clearRect(0, 0, canvas.width, canvas.height);

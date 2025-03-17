@@ -211,3 +211,74 @@ button {
 #canvas, #webcam {
     transform: scaleX(-1);
 }
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+        box-shadow: none;
+        margin-top: 0;
+    }
+
+    .camera-container {
+        padding: 10px;
+    }
+
+    #webcam, #canvas {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+    }
+
+    .product-items {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
+    .product-item {
+        width: 100px;
+        padding: 5px;
+    }
+
+    .add-to-cart-btn {
+        width: calc(100% - 20px);
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .controls button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    .category-selector button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Tablet (max-width: 900px) */
+@media only screen and (max-width: 900px) {
+    .container {
+        width: 90%;
+    }
+
+    .product-item {
+        width: 110px;
+    }
+
+    .add-to-cart-btn {
+        width: calc(100% - 30px);
+    }
+
+    .controls button {
+        padding: 10px 14px;
+    }
+}
+
+/* Máy tính lớn hơn (min-width: 901px) */
+@media only screen and (min-width: 901px) {
+    .container {
+        width: 700px;
+    }
+}
