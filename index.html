@@ -164,7 +164,6 @@
                             } else {
                                 drawRotatedRing(base, middle);        // Bản desktop giữ nguyên
                             }
-                            drawRotatedRing(base, middle);
                         }
                     }
 
@@ -228,7 +227,7 @@
                 const ringWidth = distance * 1.6;
                 const ringHeight = distance * 2.0;
 
-                const offsetY = distance * 0.55;
+                const offsetY = distance * 0.75;
 
                 const centerX = (scaledBase[0] + scaledTip[0]) / 2;
                 const centerY = (scaledBase[1] + scaledTip[1]) / 2;
@@ -251,6 +250,7 @@
                 );
                 ctx.restore();
             }
+
             function drawRotatedRingMobile(base, middle) {
                     const videoWidth = video.videoWidth;
                     const videoHeight = video.videoHeight;
@@ -271,10 +271,10 @@
                     const distance = Math.hypot(dx, dy);
 
                     // Đã test tối ưu cho màn hình điện thoại
-                    const ringWidth = distance * 2.8; // nhỏ hơn chút cho mobile
+                    const ringWidth = distance * 1.6; // nhỏ hơn chút cho mobile
                     const ringHeight = distance * 2.0;
 
-                    const offsetY = distance * 0.1;
+                    const offsetY = distance * 0.55;
 
                     const centerX = (scaledBase[0] + scaledTip[0]) / 2;
                     const centerY = (scaledBase[1] + scaledTip[1]) / 2;
