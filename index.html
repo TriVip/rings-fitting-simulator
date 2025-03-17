@@ -169,36 +169,82 @@
                 }
 
                 // Hàm fit nhẫn hoàn chỉnh nhất
-                function drawRotatedRing(base, middle) {
-                    const dx = middle[0] - base[0];
-                    const dy = middle[1] - base[1];
-                    const angle = Math.atan2(dy, dx);
-                    const distance = Math.hypot(dx, dy);
+                // function drawRotatedRing(base, middle) {
+                //     const dx = middle[0] - base[0];
+                //     const dy = middle[1] - base[1];
+                //     const angle = Math.atan2(dy, dx);
+                //     const distance = Math.hypot(dx, dy);
 
-                    // Điều chỉnh kích thước để fit vừa nhất
-                    const ringWidth = distance * 1.6; // Chiều rộng nhẫn (có thể tinh chỉnh nhỏ hơn hoặc lớn hơn)
-                    const ringHeight = distance * 2.0; // Chiều cao nhẫn (tùy chỉnh)
+                //     // Điều chỉnh kích thước để fit vừa nhất
+                //     const ringWidth = distance * 1.6; // Chiều rộng nhẫn (có thể tinh chỉnh nhỏ hơn hoặc lớn hơn)
+                //     const ringHeight = distance * 2.0; // Chiều cao nhẫn (tùy chỉnh)
 
-                    // Dịch chuyển nhẹ vị trí hiển thị xuống dưới một chút
-                    const offsetY = distance * 0.55;
+                //     // Dịch chuyển nhẹ vị trí hiển thị xuống dưới một chút
+                //     const offsetY = distance * 0.55;
 
-                    ctx.shadowColor = 'rgba(0,0,0,0.3)';
-                    ctx.shadowBlur = 10;
-                    ctx.shadowOffsetX = 4;
-                    ctx.shadowOffsetY = 4;
+                //     ctx.shadowColor = 'rgba(0,0,0,0.3)';
+                //     ctx.shadowBlur = 10;
+                //     ctx.shadowOffsetX = 4;
+                //     ctx.shadowOffsetY = 4;
                     
-                    ctx.save();
-                    ctx.translate(base[0], base[1]);
-                    ctx.rotate(angle + Math.PI / 2);
-                    ctx.drawImage(
-                        ringImg,
-                        -ringWidth / 2,
-                        -ringHeight / 2 + offsetY,
-                        ringWidth,
-                        ringHeight
-                    );
-                    ctx.restore();
-                }
+                //     ctx.save();
+                //     ctx.translate(base[0], base[1]);
+                //     ctx.rotate(angle + Math.PI / 2);
+                //     ctx.drawImage(
+                //         ringImg,
+                //         -ringWidth / 2,
+                //         -ringHeight / 2 + offsetY,
+                //         ringWidth,
+                //         ringHeight
+                //     );
+                //     ctx.restore();
+                // }
+                function drawRotatedRing(base, tip) {
+                const videoWidth = video.videoWidth;
+                const videoHeight = video.videoHeight;
+                const canvasWidth = canvas.width;
+                const canvasHeight = canvas.height;
+
+                // Tính toán scale giữa video và canvas
+                const scaleX = canvasWidth / videoWidth;
+                const scaleY = canvasHeight / videoHeight;
+
+                // Áp dụng scale vào tọa độ base và tip
+                const scaledBase = [base[0] * scaleX, base[1] * scaleY];
+                const scaledTip = [tip[0] * scaleX, tip[1] * scaleY];
+
+                const dx = scaledTip[0] - scaledBase[0];
+                const dy = scaledTip[1] - scaledBase[1];
+                const angle = Math.atan2(dy, dx);
+                const distance = Math.hypot(dx, dy);
+
+                // Điều chỉnh kích thước nhẫn theo scale
+                const ringWidth = distance * 1.4;
+                const ringHeight = distance * 1.1;
+
+                const offsetY = distance * 0.05;
+
+                const centerX = (scaledBase[0] + scaledTip[0]) / 2;
+                const centerY = (scaledBase[1] + scaledTip[1]) / 2;
+
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(angle + Math.PI / 2);
+
+                ctx.shadowColor = 'rgba(0,0,0,0.3)';
+                ctx.shadowBlur = 8;
+                ctx.shadowOffsetX = 3;
+                ctx.shadowOffsetY = 3;
+
+                ctx.drawImage(
+                    ringImg,
+                    -ringWidth / 2,
+                    -ringHeight / 2 + offsetY,
+                    ringWidth,
+                    ringHeight
+                );
+                ctx.restore();
+            }
             });
 
             function loadProducts(category) {
